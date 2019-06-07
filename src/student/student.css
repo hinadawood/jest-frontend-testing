@@ -1,0 +1,9 @@
+.page-container {
+  text-align: center;
+}
+
+.my-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
