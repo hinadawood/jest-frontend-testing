@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { Student } from "./Student";
+import { Student, mapStateToProps, mapStateToDispatch, mapDispatchToProps } from "./Student";
 import renderer from 'react-test-renderer';
 
 
@@ -44,7 +44,7 @@ describe('test change event for student form lastName', () => {
     component.find('TextField').at(1).simulate('change', {target: {value: 'Le', name: 'lastName'}})
   });
 
-  it('should update firstName', () => {
+  it('should update lastName', () => {
     expect(component.state().lastName).toEqual('Le')
   })
 });
@@ -55,7 +55,7 @@ describe('test change event for student form age', () => {
     component.find('TextField').at(2).simulate('change', {target: {value: '30', name: 'age'}})
   });
 
-  it('should update firstName', () => {
+  it('should update age', () => {
     expect(component.state().age).toEqual('30')
   })
 });
@@ -72,8 +72,31 @@ describe('test click event for submit button', () => {
 });
 
 describe('snapshot testing', () => {
-  it('renders correctly', () => {
+  it('should render correctly by comparing snapshot', () => {
     const tree = renderer.create(<Student/>).toJSON();
     expect(tree).toMatchSnapshot();
+  })
+});
+
+describe('test redux functions', () => {
+  it('should test mapStateToProps', () => {
+    const initialState = {
+      student: {
+        firstName: 'Jane',
+        lastName: 'Doe',
+        age: 10
+      }
+    };
+    expect(mapStateToProps(initialState).student).toEqual({
+      firstName: 'Jane',
+      lastName: 'Doe',
+      age: 10
+    })
+  });
+
+  it('should test mapStateToDispatch', () => {
+    const dispatch = jest.fn();
+    mapDispatchToProps(dispatch).saveStudentInfo();
+    expect(dispatch).toHaveBeenCalled();
   })
 })

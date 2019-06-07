@@ -11,9 +11,7 @@ export class Student extends Component {
     this.state = {
       firstName: props.firstName || "",
       lastName: props.lastName || "",
-      age: props.age || "",
-      showFetchButton: false,
-      showFetchSection: false
+      age: props.age || ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickSave = this.handleClickSave.bind(this);
