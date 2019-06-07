@@ -1,6 +1,6 @@
 import { SAVE_STUDENT_INFO_SUCCESS} from './StudentActions';
 
-export default function studentReducer(state = {}, action = null){
+export default function studentReducer(state = {}, action = {type: ''}){
     switch(action.type){
         case SAVE_STUDENT_INFO_SUCCESS: 
             return {
